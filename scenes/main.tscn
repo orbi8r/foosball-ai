@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba2agsucdf3fv"]
+[gd_scene load_steps=7 format=3 uid="uid://ba2agsucdf3fv"]
 
 [ext_resource type="PackedScene" uid="uid://b1o2ovskx0q3y" path="res://model/football_field.glb" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://b3hmaku06qna5" path="res://scripts_gd/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cqsx636cbbte7" path="res://scenes/player.tscn" id="3_sugp2"]
 
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 1
@@ -12,6 +14,7 @@ size = Vector3(30, 1, 20)
 size = Vector3(30, 10, 1)
 
 [node name="main" type="Node3D"]
+script = ExtResource("1_sugp2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.760587, -0.562255, 0.324618, 0, 0.5, 0.866025, -0.649236, -0.658688, 0.380294, 6.09108, 0, 2.27898)
@@ -61,3 +64,9 @@ shape = SubResource("BoxShape3D_o5qli")
 transform = Transform3D(1, 0, 0, 0, 0.352299, 0.935888, 0, -0.935888, 0.352299, 0, 13, 8)
 
 [node name="players" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="player_a" parent="players" instance=ExtResource("3_sugp2")]
+
+[node name="player_b" parent="players" instance=ExtResource("3_sugp2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

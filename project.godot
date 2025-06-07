@@ -17,8 +17,9 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [file_customization]
 
 folder_colors={
-"res://model/": "green",
-"res://scenes/": "teal",
-"res://scripts/": "blue",
+"res://model/": "yellow",
+"res://scenes/": "green",
+"res://scripts_gd/": "teal",
+"res://scripts_py/": "blue",
 "res://texture/": "purple"
 }
