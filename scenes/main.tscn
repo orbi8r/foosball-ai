@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba2agsucdf3fv"]
+
+[ext_resource type="PackedScene" uid="uid://b1o2ovskx0q3y" path="res://model/football_field.glb" id="1_o5qli"]
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
+size = Vector3(30, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
+size = Vector3(30, 10, 1)
+
+[node name="main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.760587, -0.562255, 0.324618, 0, 0.5, 0.866025, -0.649236, -0.658688, 0.380294, 6.09108, 0, 2.27898)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o5qli")
+
+[node name="board" type="Marker3D" parent="."]
+
+[node name="floor" type="StaticBody3D" parent="board"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="board/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="Sketchfab_Scene" parent="board/floor" instance=ExtResource("1_o5qli")]
+transform = Transform3D(-2.84124e-08, 0, 0.65, 0, 0.65, 0, -0.65, 0, -2.84124e-08, 0, -1.3, 0)
+
+[node name="wall1" type="StaticBody3D" parent="board"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="board/wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 10.5)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="wall2" type="StaticBody3D" parent="board"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="board/wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -10.5)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="wall3" type="StaticBody3D" parent="board"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="board/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15.5)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="wall4" type="StaticBody3D" parent="board"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="board/wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -15.5)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.352299, 0.935888, 0, -0.935888, 0.352299, 0, 13, 8)
+
+[node name="players" type="Marker3D" parent="."]

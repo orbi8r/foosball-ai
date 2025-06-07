@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://l8kf5y817ebt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7fk8j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eegco"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.41
+metallic_specular = 0.97
+roughness = 0.35
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_shgj0"]
+material = SubResource("StandardMaterial3D_eegco")
+
+[node name="foosmen" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7fk8j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_shgj0")
