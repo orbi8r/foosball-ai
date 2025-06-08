@@ -15,10 +15,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.276, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.61933, 0, 0)
 
 [node name="foosmen" parent="defenders" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, 2)
 
 [node name="foosmen2" parent="defenders" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, -2)
 
 [node name="middle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60446, 0, 0)
@@ -26,16 +26,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60446, 0, 0)
 [node name="foosmen" parent="middle" instance=ExtResource("1_3vyb7")]
 
 [node name="foosmen2" parent="middle" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, 3)
 
 [node name="foosmen3" parent="middle" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, -3)
 
 [node name="foosmen4" parent="middle" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, 6)
 
 [node name="foosmen5" parent="middle" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, -6)
 
 [node name="strikers" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.224, 0, 0)
@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.224, 0, 0)
 [node name="foosmen" parent="strikers" instance=ExtResource("1_3vyb7")]
 
 [node name="foosmen2" parent="strikers" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, 4)
 
 [node name="foosmen3" parent="strikers" instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478, -4)

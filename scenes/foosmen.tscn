@@ -2,7 +2,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7fk8j"]
 radius = 0.4
-height = 1.4
+height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eegco"]
 albedo_color = Color(1, 0, 0, 1)
@@ -13,9 +13,10 @@ roughness = 0.35
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_shgj0"]
 material = SubResource("StandardMaterial3D_eegco")
 radius = 0.4
-height = 1.4
+height = 1.5
 
-[node name="foosmen" type="RigidBody3D"]
+[node name="foosmen" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.477867, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7fk8j")

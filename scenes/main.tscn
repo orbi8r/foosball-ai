@@ -64,7 +64,7 @@ shape = SubResource("BoxShape3D_o5qli")
 transform = Transform3D(1, 0, 0, 0, 0.352299, 0.935888, 0, -0.935888, 0.352299, 0, 13, 8)
 
 [node name="players" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65476, 0)
 
 [node name="player_a" parent="players" instance=ExtResource("3_sugp2")]
 
