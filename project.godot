@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 window/vsync/vsync_mode=0
 
+[editor]
+
+movie_writer/disable_vsync=true
+
 [file_customization]
 
 folder_colors={
