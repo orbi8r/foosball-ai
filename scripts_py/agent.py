@@ -10,6 +10,11 @@ import queue
 from collections import deque
 
 
+# Set device to CUDA if available
+DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"[INFO] Using device: {DEVICE} ({torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU'})")
+
+
 class SimpleNet(nn.Module):
     def __init__(self, input_dim=8, output_dim=8):
         super(SimpleNet, self).__init__()
@@ -34,12 +39,12 @@ class Agent:
         if not os.path.isabs(model_path):
             model_path = os.path.join(BASE_DIR, model_path)
         self.model_path = model_path
-        self.net = SimpleNet(input_dim=8, output_dim=8)
+        self.net = SimpleNet(input_dim=8, output_dim=8).to(DEVICE)
         self.optimizer = optim.Adam(self.net.parameters(), lr=lr)
         self.criterion = nn.MSELoss()
         # load existing model if available
         if os.path.exists(self.model_path):
-            self.net.load_state_dict(torch.load(self.model_path))
+            self.net.load_state_dict(torch.load(self.model_path, map_location=DEVICE))
             print(f"Loaded model from {self.model_path}")
         self.memory = deque(maxlen=10000)
         self.batch_size = 32
@@ -74,8 +79,8 @@ class Agent:
         with self._model_lock:
             self.net.eval()
             with torch.no_grad():
-                x = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
-                out = self.net(x).squeeze(0).numpy()
+                x = torch.tensor(state, dtype=torch.float32, device=DEVICE).unsqueeze(0)
+                out = self.net(x).squeeze(0).cpu().numpy()
         actions = []
         for i in range(4):
             t_val = out[i * 2]
@@ -125,17 +130,15 @@ class Agent:
             # Sample and train in background
             batch = random.sample(self.memory, self.batch_size)
             states, actions, rewards, next_states = zip(*batch)
-            states = torch.tensor(states, dtype=torch.float32)
-            actions = torch.tensor(actions, dtype=torch.float32)
-            rewards = torch.tensor(rewards, dtype=torch.float32)
-            next_states = torch.tensor(next_states, dtype=torch.float32)
+            states = torch.tensor(states, dtype=torch.float32, device=DEVICE)
+            actions = torch.tensor(actions, dtype=torch.float32, device=DEVICE)
+            rewards = torch.tensor(rewards, dtype=torch.float32, device=DEVICE)
+            next_states = torch.tensor(next_states, dtype=torch.float32, device=DEVICE)
             # Only lock for model update, keep as short as possible
             with self._model_lock:
                 q_values = self.net(states)
                 next_q = self.net(next_states).max(dim=1)[0]
-                target = actions * rewards.unsqueeze(1) + self.gamma * next_q.unsqueeze(
-                    1
-                )
+                target = actions * rewards.unsqueeze(1) + self.gamma * next_q.unsqueeze(1)
                 loss = self.criterion(q_values, target)
                 self.optimizer.zero_grad()
                 loss.backward()
@@ -171,7 +174,7 @@ class Agent:
     def load(self):
         if os.path.exists(self.model_path):
             with self._model_lock:
-                self.net.load_state_dict(torch.load(self.model_path))
+                self.net.load_state_dict(torch.load(self.model_path, map_location=DEVICE))
                 print(f"[MODEL] Loaded model from {self.model_path}")
 
     def autosave_loop(self, interval=60):

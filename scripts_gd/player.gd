@@ -88,8 +88,8 @@ func compute_rotation_reward() -> float:
 	return reward / ROW_COUNT
 
 func compute_total_reward() -> float:
-	# Keep rotation reward as is, add translation reward as described
-	return compute_rotation_reward() + compute_row_translation_reward()
+	# Only use rotation reward, remove translation reward
+	return compute_rotation_reward()
 
 func get_observation() -> Array:
 	var obs = []
